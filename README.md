@@ -14,4 +14,4 @@ After some time some changes will be made on this repository. You can just pull 
 git pull
 ```
 
-Occasionally you in lab notes you will find in some R snippets (e.g. see lab presentation for the first lesson). Using R would drastically increase a level of difficulty of this lab, so I will not require nor teach about it, we will stick with SPSS. However, you are free (or even encouraged) to try R. Most lab computers should have some R installation. You can also install it for free from [here](https://cran.r-project.org/). Just copy and paste the code into the R console and it should work.
+Occasionally in lab notes you will find in some R snippets (e.g. see lab presentation for the first lesson). Using R would drastically increase a level of difficulty of this lab, so I will not require nor teach about it, we will stick with SPSS. However, you are free (or even encouraged) to try R. Most lab computers should have some R installation. You can also install it for free from [here](https://cran.r-project.org/). Just copy and paste the code into the R console and it should work.

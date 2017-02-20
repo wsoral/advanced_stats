@@ -13,3 +13,5 @@
 *.ttt
 *.bib.bak
 .DS_Store
+.Rhistory
+*.html

@@ -1,0 +1,150 @@
+---
+title: "Lab 1"
+author: "Wiktor Soral"
+date: "February 21 2017"
+output: ioslides_presentation
+---
+
+##Outline
+
+ - Course aims and structure
+ - How to pass the course?
+ - Data analysis workflow
+ - Data analysis tools
+ - Tidy data
+ - SPSS - recap
+ 
+##Course aims and structure
+  
+  - The main goal of this course is to familiarize students with practical knowledge and theoretical background of more advanced data analysis methods.
+  - We will aim to the level where you will be able to perform by yourself analyses required for your empirical paper, master thesis, and papers in professional psychological journals.
+  - Each lab will begin with short introduction and discussion of the topic, next you will use your knowledge to analyse real word datasets.
+  - Home assignments will mostly consist of writing short empirical reports, when you will practice your knowledge even further.
+  - To preserve your knowledge you will write 2 exams (midterm and final)
+
+##How to pass the course?
+
+  - Students must respect the principles of academic integrity
+  - Attendance: 2 miss classes without excuse, 2 more classes in case of excuse (additional work), more than 4 will not pass
+  - Home assignments
+  - Midterm and final exam
+  - 30% \* (home assignments) + 30% \* (midterm score) + 40% \* (final exam score) = total score
+  - Total score and both exam scores should be at least at the 50% level to pass the course.
+  - Grading scale: 95%+ = 5! 90-94% = 5 80-89% = 4.5 70-79% = 4 60-69% = 3.5 50-59% 59% = 3 below 50% = 2 (fail)
+
+##Data analysis workflow
+
+  - Collecting your data, ie. running a study
+  - Importing your data to stat. software and checking its integrity
+  - Assessing whether data are adequate to answer the research question
+  - Making necessary transformations, computations, filtering, etc.
+  - Building a statistical model that will account for the data
+  - Diagnosing problems with the model and the data
+  - Assessing whether statistical model fits the data
+  - If model accepted: Drawing conclusions from the model -- if not repeat 3 last steps (but with different model)
+  - Decide whether to collect more data
+
+##Data analysis tools
+
+  - Graphical user interface, non-free: SPSS, Statistica, Stata, Excel
+  - Graphical user interface, free: JASP, PSPP
+  
+  - Command line interface, non-free: Stata, SAS, S+, MATLAB
+  - Command line interface, free: R, some Python packages, Julia
+
+##Tidy data 1
+
+  - Each variable forms a column
+  - Each observation forms a row
+  - Each type of observational unit forms a table
+  -> Each cell consists of 1 value from 1 subject
+  
+|name    | gender  | age  | self-esteem (1-4)|
+|--------|-------- |------|------------------|
+| Dan    |  male   | 69   |  3.6             |
+| Brian  |  male   | 64   |  3.7             |
+| Sue    |  female | 65   |  3.9             |
+| Hazel  |  female | 68   |  3.8             |
+
+##Tidy data 2
+
+ - Ordering of columns - first fixed values, then random values
+ - Missing values are identified
+ - Value meaning is indicated (where possible)
+ - Scale type is identified
+
+##Assumptions 1
+
+  - Normally distributed data
+  
+```{r echo=FALSE}
+hist(rnorm(1000),freq = F, col = "lightblue", main ="", xlab='')
+curve(dnorm(x),add = T, col="red", lw=2)
+```
+
+##Assumptions 1
+
+  - Non-normally distributed data
+  
+```{r echo=FALSE}
+hist(rpois(1000, lambda = 3),freq = F, breaks=10, col = "lightblue", main ="", xlab='')
+curve(dnorm(x, mean = 3, sd = sqrt(3)),add = T, col="red", lw=2)
+```
+
+  
+##Assumptions 2
+
+  - Homogeneity of variance
+  
+```{r echo=FALSE}
+boxplot(rnorm(500, 3, 2), rnorm(500, 5, 2), col = "lightblue")
+```
+
+##Assumptions 2
+
+  - Heterogeneity of variance
+  
+```{r echo=FALSE}
+boxplot(rnorm(500, 3, 2), rnorm(500, 5, 4), col = "lightblue")
+```
+
+##Assumptions 3
+
+  - Interval data
+  
+```{r echo=FALSE}
+catego = sample(1:10, 400, replace= T, c(0.02, 0.03,0.10,0.15, 0.20, 0.20,0.15, 0.10,0.03, 0.02))
+barplot(prop.table(table(catego)), ylim =c(0, 0.3),col='lightblue')
+```
+
+
+##Assumptions 3
+
+  - Non-interval data
+  
+```{r echo=FALSE}
+catego = sample(c('a','b','c','d'), 200, replace= T, prob = c(0.45, 0.25, 0.20, 0.1))
+barplot(prop.table(table(catego)), ylim =c(0, 0.5),col='lightblue')
+```
+
+##Assumptions 4
+
+  - Independence
+  
+```{r echo=FALSE}
+x <- rnorm(1000)
+acf(x, main = "")
+```
+
+
+##Assumptions 4
+
+  - Non-independence
+  
+```{r echo=FALSE}
+x <- filter(rnorm(1000), filter=rep(1,7), circular=TRUE)
+acf(x, main = "")
+```
+
+##SPSS - recap
+

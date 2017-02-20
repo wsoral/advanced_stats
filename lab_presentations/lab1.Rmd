@@ -148,3 +148,11 @@ acf(x, main = "")
 
 ##SPSS - recap
 
+ 1. Selecting a subset of data, splitting data
+ 2. Computing new values and recoding data
+ 3. Making simple graphs
+ 4. Checking normality with histogram and QQ-plot
+ 5. Checking homogeneity of variance with boxplots
+ 6. Checking independence of observations with auto-correlation plots
+ 7. Detecting outliers
+

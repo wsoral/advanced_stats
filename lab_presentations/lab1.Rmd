@@ -54,6 +54,29 @@ output: ioslides_presentation
 
 ##Tidy data 1
 
+  - You have collected your questionnaires on gender, age, and self-esteem 
+  - How should you put them together to work
+  
+| gender  |count |
+|-------- |------|
+|  female | 44   |
+|  male   | 23   |
+
+##Tidy data 1
+
+  - You have collected your questionnaires on gender, age, and self-esteem 
+  - How should you put them together to work
+  
+|name    |  gender,age,SE |
+|--------|----------------|
+| Dan    |  male,69,3.6   |
+| Brian  |  male,64,3.7   |
+| Sue    |  female,65,3.9 |
+| Hazel  |  female,68,3.8 |
+
+
+##Tidy data 2
+
   - Each variable forms a column
   - Each observation forms a row
   - Each type of observational unit forms a table
@@ -66,7 +89,7 @@ output: ioslides_presentation
 | Sue    |  female | 65   |  3.9             |
 | Hazel  |  female | 68   |  3.8             |
 
-##Tidy data 2
+##Tidy data 3
 
  - Ordering of columns - first fixed values, then random values
  - Missing values are identified

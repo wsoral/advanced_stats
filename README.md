@@ -1,8 +1,10 @@
 # Resources for Advanced Statistical Methods
 ##Here you will find resources that will help mastering the material during the lab "Advanced Statistical Methods".
 More specifically you will find here:
-1. datasets required during lab exercises
-2. homework assignments and required datasets
+
+1. datasets that we will use during lab exercises
+2. homework assignments and datasets required for completion
+3. lab presentations
 3. some additional literature
 4. useful resources - helpful during a course
 

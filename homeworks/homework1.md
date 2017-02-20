@@ -13,3 +13,5 @@ Download a dataset *home1.sav* from the current folder. In the dataset you will 
 On the basis of the literature and information that you obtained during the lab, try to answer what is wrong which each variable. Why you should be careful when comparing these variables between two conditions?
 
 Explain the case of each variable (x1 to x6), and propose some solution to manage the problem (if it is obvious). Illustrate with proper graphs if necessary.
+
+In this assingment you do not have to write full report. However, try to stick to APA style.

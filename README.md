@@ -16,7 +16,7 @@ After successful installation just clone this repository
 ```bash
 git clone https://github.com/wsoral/advanced_stats
 ```
-After some time some changes will be made on this repository. You can just pull these changes, by simply going to the folder on your PC and:
+During this semester changes will be made to this repository and new content will be added (e.g. new assignments). You can just pull these changes, by simply going to the folder on your PC and:
 ```bash
 git pull
 ```

@@ -1,5 +1,8 @@
 # Resources for Advanced Statistical Methods
-##Here you will find resources that will help mastering the material during the lab "Advanced Statistical Methods".
+
+## Office hours: every Thursday 12-3PM, room no. 300
+
+## Here you will find resources that will help mastering the material during the lab "Advanced Statistical Methods".
 More specifically you will find here:
 
 1. datasets that we will use during lab exercises

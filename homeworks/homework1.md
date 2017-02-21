@@ -1,6 +1,6 @@
 # Homework 1 - what is wrong with this data?
 
-## Deadline February 28, 2017
+## Deadline March 7, 2017
 
 Before attempting to analyze your data and verify your hypotheses, you should always carefully check the data quality. In practice, you will probably spend about 80% of your time on checking the integrity of your data and data-munging (i.e. making necessary corrections, like transformations) and only 20% on statistical analyses.
 

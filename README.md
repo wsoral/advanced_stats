@@ -2,6 +2,8 @@
 
 ## Office hours: every Thursday 12-3PM, room no. 300
 
+## Midterm exam: April 11, 2017
+
 ## Here you will find resources that will help mastering the material during the lab "Advanced Statistical Methods".
 More specifically you will find here:
 

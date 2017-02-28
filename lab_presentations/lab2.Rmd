@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Modeling noise
 
 <img src="noise.png" width=600>
+
 - What can you see on this image?
 
 ## Modeling noise

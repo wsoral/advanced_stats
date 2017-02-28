@@ -12,12 +12,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Modeling noise
 
-<img src="~/Pictures/noise.png" width=600>
+<img src="noise.png" width=600>
 - What can you see on this image?
 
 ## Modeling noise
 
-<img src="~/Pictures/nonnoise.png" width=600>
+<img src="nonnoise.png" width=600>
 
 - What can you see on this image?
 - To what extenct you can be sure that there is something behind the noise?

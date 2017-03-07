@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<template SPSS-Version="3.0" date="2017-03-07" description="" selectPath="87 2 10 12 13 17 18 20 21 " xmlns="http://www.ibm.com/software/analytics/spss/xml/visualization" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/software/analytics/spss/xml/visualization http://www.ibm.com/software/analytics/spss/xml/visualization/vizml-template-3.5.xsd">
+	<setClusterWidth gap="15%"/>
+	<setAxisStyle categorical="true" role="x">
+		<axisLabelStyle>
+			<style color="#000000" color2="transparent" font-family="Times New Roman" font-size="12pt" font-style="regular" font-weight="regular" text-fit="true" visible="true"/>
+		</axisLabelStyle>
+	</setAxisStyle>
+	<setAxisStyle categorical="false" role="y">
+		<axisLabelStyle>
+			<style color="#000000" color2="transparent" font-family="Times New Roman" font-size="12pt" font-style="regular" font-weight="regular" text-fit="true" visible="true"/>
+		</axisLabelStyle>
+	</setAxisStyle>
+	<addFrame count="1" type="visualization">
+		<location bottom="500px" left="0px" right="625px" top="0px"/>
+		<style color="#ffffff" color2="transparent" coordinate="0" number="0" visible="true"/>
+		<style coordinate="1" font-family="Arial" font-size="8pt" number="1" pattern="0" stroke-linecap="butt" text-fit="true" visible="true"/>
+	</addFrame>
+	<addFrame count="1" styleOnly="true" type="legend">
+		<style color="transparent" color2="transparent" coordinate="0" number="0" visible="true"/>
+		<style color="#000000" color2="transparent" coordinate="1" font-size="8pt" font-weight="regular" number="1" visible="true"/>
+		<style color="#000000" color2="transparent" coordinate="1" font-size="8pt" font-weight="regular" number="1" visible="true"/>
+		<label><style color="#000000" color2="transparent" coordinate="0" font-size="10pt" font-weight="regular" number="0" visible="true"/></label>
+	</addFrame>
+	<addFrame count="1" styleOnly="true" type="footnote">
+		<label><style color="#000000" color2="transparent" coordinate="0" font-family="Times New Roman" font-size="11pt" font-weight="regular" number="0" text-fit="true" visible="true"/></label>
+	</addFrame>
+	<setAxisMajorTicks>
+		<majorTicks categorical="true" role="x">
+			<tickLabelStyle>
+				<style color="#000000" font-family="Times New Roman" font-size="11pt" text-fit="true" visible="true"/>
+			</tickLabelStyle>
+		</majorTicks>
+	</setAxisMajorTicks>
+	<setAxisMajorTicks>
+		<majorTicks categorical="false" role="y">
+			<tickLabelStyle>
+				<style color="#000000" font-family="Times New Roman" font-size="11pt" text-fit="true" visible="true"/>
+			</tickLabelStyle>
+		</majorTicks>
+	</setAxisMajorTicks>
+	<addFrame count="1" styleOnly="true" type="graph">
+		<style color="transparent" color2="transparent" visible="true"/>
+		<style color="transparent" color2="#000000" coordinate="1" number="1" visible="true"/>
+	</addFrame>
+	<setErrorBarOptions>
+		<style color="#000000" color2="#000000" depth="75%" pattern="0" symbol="ibeam" visible="true" width="25%"/>
+	</setErrorBarOptions>
+	<setStyle subtype="clustered" type="errorbar">
+		<style color="#000000" color2="#000000" depth="75%" pattern="0" symbol="ibeam" visible="true" width="25%"/>
+	</setStyle>
+	<setStyle subtype="clustered" type="bar">
+		<style color2="#000000" depth="75%" size="100%" symbol="square" visible="true"/>
+	</setStyle>
+	<setStyle subtype="clustered" type="errorbar">
+		<style color="#000000" color2="#000000" coordinate="0" depth="75%" pattern="0" symbol="ibeam" visible="true" width="25%"/>
+	</setStyle>
+	<setStyle subtype="clustered" type="bar">
+		<style color2="#000000" coordinate="0" depth="75%" size="100%" symbol="square" visible="true"/>
+	</setStyle>
+	<setColor aestheticNumber="1">
+		<cycle>
+			<style color="#ffffff" visible="true"/>
+			<style color="#666666" visible="true"/>
+			<style color="#d3ce97" visible="true"/>
+			<style color="#7c287d" visible="true"/>
+			<style color="#fbf873" visible="true"/>
+			<style color="#ef3338" visible="true"/>
+			<style color="#48c2c5" visible="true"/>
+			<style color="#cccccc" visible="true"/>
+			<style color="#7aaad5" visible="true"/>
+			<style color="#0a562c" visible="true"/>
+			<style color="#f8981d" visible="true"/>
+			<style color="#ddbaf1" visible="true"/>
+			<style color="#1a5f76" visible="true"/>
+			<style color="#ccffcc" visible="true"/>
+			<style color="#bb3f7f" visible="true"/>
+			<style color="#999999" visible="true"/>
+			<style color="#000000" visible="true"/>
+			<style color="#b6e7e8" visible="true"/>
+			<style color="#ffffff" visible="true"/>
+			<style color="#797aa7" visible="true"/>
+			<style color="#70dc84" visible="true"/>
+			<style color="#333333" visible="true"/>
+			<style color="#acd0ee" visible="true"/>
+			<style color="#a21619" visible="true"/>
+			<style color="#5d61ff" visible="true"/>
+			<style color="#e4e4e4" visible="true"/>
+			<style color="#248bac" visible="true"/>
+			<style color="#b89bc9" visible="true"/>
+			<style color="#666666" visible="true"/>
+			<style color="#0d8d46" visible="true"/>
+		</cycle>
+	</setColor>
+</template>

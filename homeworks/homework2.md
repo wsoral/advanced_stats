@@ -28,4 +28,4 @@ Choose 2 dependent variables: either EA and TA or PA and NA. Write short report 
 *Hint 1*: You can always consult Andy Field book if you get stuck and don't know how to perform some of the analyses.
 
 *Hint 2*: Open any good APA journal, like Journal of Personality and Social Psychology or Journal of Experimental Social Psychology,
-and try to understand the way the empirical part of the reports is written (how results of similar experimental study are reported).
+and try to understand the way the empirical part of articles in such journal is written (how results of similar experimental study are reported).

@@ -16,6 +16,8 @@ Each film clip was shown for 9 minutes. Following this the Motivational State Qu
 
 Data from the MSQ were scored for Energetic and Tense Arousal (EA and TA) as well as Positive and Negative Affect (PA and NA).
 
+### Task: 
+
 Choose 2 dependent variables: either EA and TA or PA and NA. Write short report that answers how watching different types of movies in
 influences affect related variables.
 

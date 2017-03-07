@@ -24,3 +24,7 @@ Choose 2 dependent variables: either EA and TA or PA and NA. Write short report 
 2. Try to make predictions about how the group means should look like, relative to each other, and use planned contrast to verify your prediction.
 3. After checking your predictions, and if overall F-value for the test is significant, look for unexpected differences (use post-hoc).
 4. Illustrate your results with one graph (remember about proper format).
+
+Hint: You can always consult Andy Field book if you get stuck and don't know how to perform some of the analyses.
+Hint2: Open any good APA journal, like Journal of Personality and Social Psychology or Journal of Experimental Social Psychology,
+and try to understand the way the empirical part of the reports is written (how results of similar experimental study are reported).

@@ -1,4 +1,4 @@
-# Watching movies
+# Homework 2 - Watching movies
 
 ## Deadline March 14, 2017
 

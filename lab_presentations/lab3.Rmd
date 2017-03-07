@@ -1,0 +1,57 @@
+---
+title: "Lab 3"
+author: "Wiktor Soral"
+date: "6 03 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Dangers of multiple testing
+
+  - Suppose you have repeatedly performed 100 experiments, where you compared means of two groups of people. All the procedures were the same, but each time you have drawn a new sample of participants.
+  - Suppose that you somehow know, that the `true' difference of means equals 0.
+  - I you use t-test and treat results with p-values less than 0.05 as statistically significant, how often across 100 replications will you find siginficant results?
+  
+## Dangers of multiple testing
+
+```{r}
+barplot(matrix(c(946,54)), horiz = T, xlim=c(0,1000), col=c('blue','red'), main="Blue=true negative, red=false positive", ylab="Group 2 - Group1")
+```
+
+  
+## Dangers of multiple testing
+
+  - Now suppose that you once again repeatedly performed 100 experiments, but you compared means of four groups of people.
+  - How many between group comparisons you can make?
+  - Recall binomial coefficient: $\frac{n!}{k! (n-k)!}$ - number of ways $k$ objects can be choosen from among $n$ objects, and $x!$ means factorial, e.g. $4! = 4 * 3 * 2 * 1$
+  - I you use t-test and treat results with p-values less than 0.05 as statistically significant, how often across 100 replications will you find at least one siginficant result?
+  
+## Dangers of multiple testing
+
+```{r}
+M = matrix(c(946, 944, 952, 944, 940, 954, 54, 56, 48, 56, 60, 46), nrow=2, byrow=T)
+colnames(M) = c('g2-g1','g3-g1','g4-g1','g3-g2','g4-g2','g4-g3')
+barplot(M, horiz=T, col=c('blue','red'), las=2, main="Blue=true negative, red=false positive")
+```
+
+## Dangers of multiple testing
+
+  - Although you would expect to find significant differences in only 5 of 100 studies (when H0 is true), the probability of finding significant result is in factor far more greater
+
+
+## Dangers of multiple testing
+
+  - With 4 groups it is equal to $6 * 0.05 = 0.30$!!!
+  
+```{r}
+barplot(matrix(c(719,281)), horiz = T, xlim=c(0,1000), col=c('blue','red'), main="Blue=true negative, red=false positive", ylab="Any significant")
+```
+
+## Post-hoc tests
+
+## Planned comparisons
+
+## Trends

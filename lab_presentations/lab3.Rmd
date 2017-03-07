@@ -1,8 +1,8 @@
 ---
 title: "Lab 3"
 author: "Wiktor Soral"
-date: "6 03 2017"
-output: ioslides_presentation
+date: "March 3rd 2017"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
   - Suppose you have repeatedly performed 100 experiments, where you compared means of two groups of people. All the procedures were the same, but each time you have drawn a new sample of participants.
   - Suppose that you somehow know, that the `true' difference of means equals 0.
-  - I you use t-test and treat results with p-values less than 0.05 as statistically significant, how often across 100 replications will you find siginficant results?
+  - I you use t-test and treat results with p-values less than 0.05 as statistically significant, how often across 100 replications will you find significant results (false positives)?
   
 ## Dangers of multiple testing
 
@@ -27,7 +27,7 @@ barplot(matrix(c(946,54)), horiz = T, xlim=c(0,1000), col=c('blue','red'), main=
   - Now suppose that you once again repeatedly performed 100 experiments, but you compared means of four groups of people.
   - How many between group comparisons you can make?
   - Recall binomial coefficient: $\frac{n!}{k! (n-k)!}$ - number of ways $k$ objects can be choosen from among $n$ objects, and $x!$ means factorial, e.g. $4! = 4 * 3 * 2 * 1$
-  - I you use t-test and treat results with p-values less than 0.05 as statistically significant, how often across 100 replications will you find at least one siginficant result?
+  - I you use t-test and treat results with p-values less than 0.05 as statistically significant, how often across 100 replications will you find at least one significant result (false positive)?
   
 ## Dangers of multiple testing
 
@@ -39,12 +39,12 @@ barplot(M, horiz=T, col=c('blue','red'), las=2, main="Blue=true negative, red=fa
 
 ## Dangers of multiple testing
 
-  - Although you would expect to find significant differences in only 5 of 100 studies (when H0 is true), the probability of finding significant result is in factor far more greater
+  - Although you would expect to find significant differences in only 5 of 100 studies (when H0 is true), the probability of finding at least one significant result is in fact far more greater
 
 
 ## Dangers of multiple testing
 
-  - With 4 groups it is equal to $6 * 0.05 = 0.30$!!!
+  - With 4 groups (6 comparisons) it is equal to $0.05^6 = 0.2649$!!!
   
 ```{r}
 barplot(matrix(c(719,281)), horiz = T, xlim=c(0,1000), col=c('blue','red'), main="Blue=true negative, red=false positive", ylab="Any significant")
@@ -52,6 +52,91 @@ barplot(matrix(c(719,281)), horiz = T, xlim=c(0,1000), col=c('blue','red'), main
 
 ## Post-hoc tests
 
+  - When you obtain significant F-value, you usually will like to check which group means differ
+  - One way to do it is by using Fisher's Least Significant Difference (LSD) test
+  - $LSD = t * \sqrt{2 * MS_R / n^*}$
+  - where t is the critical, tabled value of the t-distribution with the df associated with $MS_R$, and $n^*$ is the number of scores used to calculate the means of interest
+  - <a href="http://www.danielsoper.com/statcalc/calculator.aspx?id=10">Simple t-value calculator</a>
+  - LSD = minimum difference between a pair of means necessary for statistical significance
+  
+  - LSD does not account for making multiple comparisons!
+  
+## Post-hoc tests
+
+  - One way to account for making multiple comparisons is by using Tukey's Honest Significant Difference (HSD)
+  - $HSD = q * \sqrt{MS_R / n^*}$
+  - where q is the relevant critical value of the studentized range statistic, and all the rest is the same
+  - In order to obtain critical q-value, in the studentized range statistic table look up the q value for and $\alpha=0.05$, $df = \nu$ - df related to $MS_R$, and $k = p = r$ - number of groups
+  - <a href="http://vassarstats.net/tabs.html#q">Simple q-value calculator</a>
+  
+## Post-hoc tests
+
+  - There is a number of other post-hoc procedures available
+  - Particularly popular is Scheffe's test due to it's conservatism (the greatest penalty on multiple comparisons), however Scheffe's test is likely to lead to Type II errors
+  - During this lab Tukey's test will be procedure of choice
+  - However in special design situations, other post-hoc procedures may also be preferable and should be explored as alternatives
+  
+
+
 ## Planned comparisons
 
-## Trends
+  - Recall $y_{ij} = \mu + \alpha_j + \epsilon_{ij}$
+  - With 3 groups we have $\alpha_1, \alpha_2, \alpha_3$, we can assign to and multiply each coefficient by a value, like $-1, 0, 1, 2$, so that the sum of assigned values would be equal to 0
+  - The assigned values are known as contrasts coefficients, and are used to model specific relations between group means
+  - If $L$ is a matrix of different contrast, and $B$ is a vector of group mean coefficients, we can test whether, $L*B = 0$ 
+  
+## Planned comparisons
+
+  - Lets say $\alpha_1=-1.2, \alpha_2=1.2, \alpha_3=2.3$, if we multply each coefficient by values of $-2, 1, 1$, then...
+  - $(-2) * (-1.2) + (1) * (1.2) + (1) * (2.3) = 0$, if $H_0$ if true, and if we move some value to the right side...
+  - $(-2) * (-1.2) = (1) * (1.2) + (1) * (2.3)$, we can also move -2 to the right, and for clarity we can multiply both sides by -1...
+  - $1.2 = \frac{1.2 + 2.3}{2}$
+  
+  - In other words we test, whether mean of group 1 is equal to averaged means of group 2 and group 3
+  
+## Planned comparisons
+
+  - In our analyses, we can use as many contrasts as we want to test specific hypotheses...
+  - However, if we want to properly divide the model sum of squares, it necessary to have contrasts that are orthogonal
+  - For a given analysis you can find a set of up to $k-1$ orthogonal contrasts, where $k$ is number of groups - try and check at home
+
+|        | $\alpha_1$   | $\alpha_2$    | $\alpha_3$   |
+|-------:|:------------:|:-------------:|:------------:|
+|        | -2           | 1             | 1            |
+|$\times$| 0            | -1            | 1            |
+|        | 0            | -1            | 1            |
+
+## Analysis of polynomial trends
+
+  - Linear trend
+
+```{r}
+barplot(c(-3,-1,1,3)+5, col='lightblue', names.arg = c('group 1', 'group 2','group 3','group 4'), ylim=c(0,10))
+x = c(0.7,1.9,3.1,4.3)
+x_cont = seq(0.7,4.3, length.out=40)
+lines(x, c(-3,-1,1,3)+5, lw=2, col="red")
+```
+
+
+## Analysis of polynomial trends
+
+  - Quadratic trend
+  
+```{r}
+barplot(c(1,-1,-1,1)+5, col='lightblue', names.arg = c('group 1', 'group 2','group 3','group 4'), ylim=c(0,10))
+lines(x,c(1,-1,-1,1)+5 , lw=2, col="red")
+lines(x_cont, 8.1 - 3.4722*x_cont + 0.694*x_cont^2, lw=2, col="blue")
+```
+
+
+## Analysis of polynomial trends
+
+  - Cubic trend
+  
+```{r}
+yC = c(-1,3,-3,1)+5
+barplot(yC, col='lightblue', names.arg = c('group 1', 'group 2','group 3','group 4'), ylim=c(0,10))
+yCpred =predict(lm(yC~x + I(x^2) + I(x^3)), newdata = data.frame(x=x_cont))
+lines(x,yC , lw=2, col="red")
+lines(x_cont, yCpred, lw=2, col="blue")
+```

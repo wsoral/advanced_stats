@@ -110,3 +110,12 @@ lines(density(mtcars[mtcars$gear==5,"mpg"],bw = 2), col="blue")
 - One value you can use to obtain such information is to look at proportion of total variance explained by your model
 - $\eta^2$ is a value you can use to estimate such proportion
 - $\eta^2 = \frac{MSS}{TSS} = \frac{MSS}{MSS + RSS}$
+
+## During lab
+
+- Summarize the variable distribution
+- Make graphs to compare means
+- Make boxplots to compare variances
+- Check the assupmtion of homogeneity of variance
+- Make one-way ANOVA and interpret the results
+- Calculate the effect size

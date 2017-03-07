@@ -20,7 +20,7 @@ Data from the MSQ were scored for Energetic and Tense Arousal (EA and TA) as wel
 
 Choose 2 dependent variables: either EA and TA or PA and NA. Write short report that answers how watching different types of movies influences affect related variables.
 
-1. Rember about a proper structure of the the report and be concise (your report should be no longer that 3 pages of APA manuscript).
+1. Rember about a proper structure of the report and try to be concise (your report should be no longer that 3 pages of APA manuscript).
 2. Try to make predictions about how the group means should look like, relative to each other, and use planned contrast to verify your prediction.
 3. After checking your predictions, and if overall F-value for the test is significant, look for unexpected differences (use post-hoc).
 4. Illustrate your results with one graph (remember about proper format).

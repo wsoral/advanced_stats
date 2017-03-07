@@ -2,7 +2,7 @@
 
 ## Deadline March 14, 2017
 
-Open in SPSS a dataset names home2.sav.
+Open in SPSS a dataset named home2.sav.
 These are data from study conducted in the Personality, Motivation and Cognition Laboratory at Northwestern University. 
 
 ### Study methodology:

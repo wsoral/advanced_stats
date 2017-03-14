@@ -101,7 +101,7 @@ $\mu_{female, blue} - \mu_{female, red} \neq \mu_{female, blue} - \mu_{female, r
 |Total        | 59|3452.21  |          |         |          |
 
 - Partial $\eta_p^2 = \frac{SS_{effect}}{SS_{effect} + SS_{residual}}$, solves the problem with $\eta_2$
-- It makes the effect size more comparable between studies, however both $\eta_2$ and $\eta_p^2$ overstimates variance explained (it is always higher than in population) 
+- It makes the effect size more comparable between studies, however both $\eta_2$ and $\eta_p^2$ overstimate variance explained (it is always higher than in population) 
 
 ## Effect sizes
 

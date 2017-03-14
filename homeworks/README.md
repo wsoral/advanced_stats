@@ -6,7 +6,7 @@ You can send your assignments after deadline. However for each day after the dea
 - up to 1 day after deadline - 10% from the total
 - more than 1 day but less than 2 days - 25% of the total
 - more than 2 days but less than 4 days - 65% of the total
-- more than 4 days - you can send your assignment, and you will receive a feedback, but it will not be graded
+- more than 4 days - you can send your assignment, and you will receive a feedback, but it will not be graded (that is you will receive 0%)
 
 
 ## How your home assignments should look like?

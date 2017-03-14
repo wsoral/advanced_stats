@@ -1,0 +1,119 @@
+---
+title: "Lab 4"
+author: "Wiktor Soral"
+date: "March 14 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Experimental design
+
+- Try to imagine an experimental study where researchers were interested in gender differences in recalling words written in fonts of different colors. A total of N = 40 participants took part in a study (20 males and 20 females). Participants were asked to memorize words written in different colors. Male participants were asked to memorize words written in <font color="red">red</font> (10 of 20 males) and <font color="green">green</font> (10 of 20 males), whereas female participants where asked to memorize words written in <font color="blue">blue</font> (10 of 20 females) and <font color="yellow">yellow</font> (10 of 20 females).
+- A number of correctly recalled words (out of 10) for each participant was recorded
+
+- What can results of such study tell us? What conclusions we will be able to make?
+- What are drawbacks of such experimental design? If any, does this drawbacks make such study useless?
+
+## Experimental design
+
+- Actually we will be able to model such results:
+- $y_{ijk} = \mu + \alpha_j + \alpha_k + \epsilon_{ijk}$
+- where $\alpha_j$ indicates a deviance of a mean related to gender from a grand mean
+- and $\alpha_k$ indicates a deviance of a mean related to font color from a grand mean
+
+## Experimental design
+
+- In a second attempt resarchers performed a study where they collected another sample of male and female participants. Within each gender group participants memorized words written in <font color="red">red</font> (one-quarter of gender group), <font color="green">green</font> (one-quarter of gender group), <font color="blue">blue</font> (one-quarter of gender group), or <font color="yellow">yellow</font> (one-quarter of gender group).
+
+- Why this example addresses the researcher's question better?
+- What are the drawbacks of such experimental design?
+
+## Experimental design
+
+- We will be able to model such results:
+- $y_{ijk} = \mu + \alpha_j + \alpha_k + \alpha_{jk} + \epsilon_{ij}$
+- where $\alpha_j$ indicates a deviance of a mean related to gender from a grand mean
+- $\alpha_k$ indicates a deviance of a mean related to font color from a grand mean
+- and $\alpha_{jk}$ indicates interaction, i.e. to effects of all combinations of the two preceding factors, not accounted by the additive terms
+
+## Interactions
+
+```{r}
+non_int = matrix(c(2,5,3.5,6.5), ncol=2)
+barplot(non_int,beside = T, col=c('lightblue','pink'), names.arg = c('Male','Female'), xlab='Gender', ylim =c(0, 8), main='No Interaction')
+legend('topleft',legend = c('Blue','Red'), fill= c('lightblue', 'pink'))
+arrows(1.5, 2, 4.5, 3.5, code=3, lwd=2, length = 0.15, angle=25)
+arrows(2.5, 5, 5.5, 6.5, code=3, lwd=2, length = 0.15, angle=25)
+arrows(1.5, 2, 2.5, 5, code=3, lwd=2, length = 0.15, angle=25)
+arrows(4.5, 3.5, 5.5, 6.5, code=3, lwd=2, length = 0.15, angle=25)
+```
+
+$\mu_{female, blue} - \mu_{female, red} = \mu_{female, blue} - \mu_{female, red}$
+
+## Interactions
+
+
+```{r}
+non_int = matrix(c(5, 2,3.5,6.5), ncol=2)
+barplot(non_int,beside = T, col=c('lightblue','pink'), names.arg = c('Male','Female'), xlab='Gender', ylim =c(0, 8), main='With Interaction')
+legend('topleft',legend = c('Blue','Red'), fill= c('lightblue', 'pink'))
+arrows(1.5, 5, 4.5, 3.5, code=3, lwd=2, length = 0.15, angle=25)
+arrows(2.5, 2, 5.5, 6.5, code=3, lwd=2, length = 0.15, angle=25)
+arrows(1.5, 5, 2.5, 2, code=3, lwd=2, length = 0.15, angle=25)
+arrows(4.5, 3.5, 5.5, 6.5, code=3, lwd=2, length = 0.15, angle=25)
+```
+
+$\mu_{female, blue} - \mu_{female, red} \neq \mu_{female, blue} - \mu_{female, red}$
+
+## Effects in multi-way ANOVA
+
+- Main effect of gender: $\mu_{female,\ .} - \mu_{male,\ .}$
+- Main effect of color: $\mu_{.\ ,blue} - \mu_{.\ ,red}$
+- Simple main effects of gender: $\mu_{female,blue} - \mu_{male,blue}$ and $\mu_{female,red} - \mu_{male,red}$
+- Simple main effects of color: $\mu_{female,blue} - \mu_{female,red}$ and $\mu_{male,blue} - \mu_{male,red}$
+
+
+## Effect sizes
+
+|             | Df|       SS|        MS|        F|       $p$|
+|:------------|--:|--------:|---------:|--------:|---------:|
+|Factor 1     |  1| 205.35  | 205.35   | 15.57   | <0.001   |
+|Factor 2     |  2|2426.43  |1213.22   | 92.00   | <0.001   |
+|Interaction  |  2| 108.32  |  54.16   |  4.11   |  0.022   |
+|Residuals    | 54| 712.11  |  13.19   |         |          |
+|Total        | 59|3452.21  |          |         |          |
+
+- Recall $\eta^2 = \frac{SS_{effect}}{SS_{total}}$, this is the same measure as in one-way ANOVA
+- The drawback of this measure is that as we add other variables to the model, the proportion of explained by any one variable will automatically decrease
+
+## Effect sizes
+
+|             | Df|       SS|        MS|        F|       $p$|
+|:------------|--:|--------:|---------:|--------:|---------:|
+|Factor 1     |  1| 205.35  | 205.35   | 15.57   | <0.001   |
+|Factor 2     |  2|2426.43  |1213.22   | 92.00   | <0.001   |
+|Interaction  |  2| 108.32  |  54.16   |  4.11   |  0.022   |
+|Residuals    | 54| 712.11  |  13.19   |         |          |
+|Total        | 59|3452.21  |          |         |          |
+
+- Partial $\eta_p^2 = \frac{SS_{effect}}{SS_{effect} + SS_{residual}}$, solves the problem with $\eta_2$
+- It makes the effect size more comparable between studies, however both $\eta_2$ and $\eta_p^2$ overstimates variance explained (it is always higher than in population) 
+
+## Effect sizes
+
+|             | Df|       SS|        MS|        F|       $p$|
+|:------------|--:|--------:|---------:|--------:|---------:|
+|Factor 1     |  1| 205.35  | 205.35   | 15.57   | <0.001   |
+|Factor 2     |  2|2426.43  |1213.22   | 92.00   | <0.001   |
+|Interaction  |  2| 108.32  |  54.16   |  4.11   |  0.022   |
+|Residuals    | 54| 712.11  |  13.19   |         |          |
+|Total        | 59|3452.21  |          |         |          |
+
+- $\omega^2$ is an unbiased estimate of population variances (it is always smaller that $\eta^2$)
+- Assuming you have a table like above, you can calculate the estimate with, $\omega^2 = \frac{SS_{effect} - (df_{effect} * MS_R)}{SS_{total} + MS_R}$
+
+

@@ -1,0 +1,98 @@
+---
+title: "Lab 5"
+author: "Wiktor Soral"
+date: "March 21 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Power in statistical modeling
+
+ - Type I ($\alpha$) error refers to probability of finding an effect (within a given sample) that does not exist in a population
+ - Type II ($\beta$) error refers to probability of missing an effect (withing a given sample) that does exist in a population
+ - Power ($1 - \beta$) is a measure of ability to detect `true' effect
+ - Power is related to effect size and number of participants (e.g. within a cell of the experiemental design)
+ 
+## Power in statistical modeling
+
+ - Lets say you want to compare 2 groups, and treat difference with $p < 0.05$ as statistically significant; moreover you would like to obtain recommended power $(1 - \beta) = 0.80$
+ - If your expected effect size is large (very rare in psych. science), you would require $2 \times 26 = 52$ participants in total
+ - In the case of medium effect size (sometimes happen in psych. science), $2 \times 64 = 128$ participants
+ - In the case of small effect size (very common in psych. science), $2 \times 393 = 786$ participants
+ 
+## Power in statistical modeling
+
+ - Most of the psychological studies are underpowered 
+ - Required sample size grows with the model complexity
+ - One way to increase power without increasing sample size is to use covariates
+
+
+## Comparing 2 means without covariate
+
+
+```{r}
+x = rep(1:2, each = 10)
+z = 1 - 1.1*x + rnorm(20, 0, 0.5)
+y = 2 + 1.7*x + 1.2*z+ rnorm(20, 0, 0.5)
+dfsm = data.frame(x,y,z)
+
+plot(y ~ x, data=dfsm, col=x, pch=16,xaxt="n")
+abline(h=mean(y[x==1]), lw=2)
+abline(h=mean(y[x==2]), lw=2, col=2)
+arrows(1.5, mean(y[x==1]), 1.5, mean(y[x==2]), code=3, lw=2, col=3)
+axis(1, c(1,2))
+```
+
+## Dependent value vs covariate among 2 groups of independent variable
+
+```{r}
+plot(y ~ z, data=dfsm, col=x, pch=16)
+legend("topleft", legend=c('x=1', 'x=2'), col=c(1,2), pch=c(16,16))
+```
+
+## Comparing 2 means with covariate
+
+```{r}
+mod = lm(y~z+x, dfsm)
+z_new = seq(min(z),max(z),length=10)
+m_z_new = mean(z_new)
+plot(y ~ z, data=dfsm, col=x, pch=16)
+lines(z_new, predict(mod, newdata = data.frame(z=z_new, x=1)), lw=2)
+lines(z_new, predict(mod, newdata = data.frame(z=z_new, x=2)), lw=2, col=2)
+arrows(m_z_new, predict(mod, newdata = data.frame(z=m_z_new,x=1)), 
+       m_z_new, predict(mod, newdata = data.frame(z=m_z_new,x=2)), lw=2,code=3, col="blue")
+legend("topleft", legend=c('x=1', 'x=2'), col=c(1,2), pch=c(16,16))
+```
+
+## Mean comparison with and without covariate
+
+```{r}
+plot(y ~ z, data=dfsm, col=x, pch=16, main="Difference between ANOVA and ANCOVA")
+lines(z_new, predict(mod, newdata = data.frame(z=z_new, x=1)), lw=2)
+lines(z_new, predict(mod, newdata = data.frame(z=z_new, x=2)), lw=2, col=2)
+arrows(m_z_new, predict(mod, newdata = data.frame(z=m_z_new,x=1)), 
+       m_z_new, predict(mod, newdata = data.frame(z=m_z_new,x=2)), lw=2,code=3, col="blue")
+abline(h=mean(y[x==1]), lw=2,lty=2)
+abline(h=mean(y[x==2]), lw=2, col=2,lty=2)
+arrows(m_z_new-0.05, mean(y[x==1]), m_z_new-0.05, mean(y[x==2]), code=3, lw=2, col=3,lty=2)
+legend("topleft", legend=c('x=1', 'x=2'), col=c(1,2), pch=c(16,16))
+```
+
+## Accounting for covariates
+
+ - Adding additional covariates to the model may result in observing greater differences between group means - suppression effect
+ - But also, adding covariates to the model may result in observing smaller differences between group means - confounder effect
+ - In general choosing to use additional covariates should be preceded by careful analysis of theoretical importance of the covariates.
+ - Using covariates ad hoc or post hoc is sometimes viewed as an example of p-hacking 
+
+
+## Some assumptions in ANCOVA
+
+  1. Covariate variables on continuous scale; you can also use nominal variables, but such analysis is usually not called ANCOVA
+  2. The covariate should be linearly related to the dependent variable at each level of the independent variable
+  3. There needs to be homogeneity of regression slopes, which means that there is no interaction between covariate and the independent variable
+

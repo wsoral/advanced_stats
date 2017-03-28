@@ -2,7 +2,7 @@
 
 Open in SPSS the dataset named home3.sav. You will find there results from an experiment on cognitive accessibility of traits related to ingroup - Poles (Soral & Kofta, 2017).
 
-During experiment participants react to traits that they thought were related to their ingroup image. Participants vieved 80 traits related to dimension if agency and communion (see Abele & Wojciszke, 2014).
+During experiment participants reacted to traits that they thought were related to their ingroup image. Participants vieved 80 traits related to dimension if agency and communion (see Abele & Wojciszke, 2014).
 Within each dimension half of the traits were positive, and half were negative. Reaction time for each of the traits was measured as an indicator of its cognitive accessibility.
 
 1. Use repeated measures ANOVA to analyse these reaction times.

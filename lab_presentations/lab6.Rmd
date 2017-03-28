@@ -1,0 +1,104 @@
+---
+title: "Lab 6"
+author: "Wiktor Soral"
+date: "March 28 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Complex experimental designs
+
+  - With complex experimental designs, the issue of power can be extremely painful, and can result in requirement of collecting huge samples
+  - Three-way ANOVA, e.g. affect: 2 (positive vs. negative) x fatigue: 2 (low vs. high) x self-esteem: 2 (low vs. high), result in 8 groups of combinations
+  - Assuming average effect size in psychology (r = 0.21) and power of at least 0.80 one would require a sample size of at least 336 participants
+  
+## Complex experimental designs
+
+  - One way to this issue was ANCOVA
+  - The other way is to perform experiment in within subjects design, i.e. to repeat measurements with the same person under different conditions
+  - With the same design and conditions as above, but within subjects one would require a sample size of at least 22 participants (insted of 336)!!!
+  - This is a great advantage.
+  
+  - Can you point drawbacks of this solution?
+  
+## Repeated measures ANOVA
+
+  - With repeated measures ANOVA you can compare measurements obtained from the same participants, e.g. performance under positive vs. negative mood
+  - However you should adjust for the potential individual differences, e.g. in performance
+  
+  $y_{ij} = \mu + \alpha_i + \alpha_j + \epsilon_{ij}$
+  
+  where $\alpha_i$ - devation from the grand mean of person $i$ and $\alpha_j$ - deviation of the mean of condition $j$ from the grand mean
+  
+  - See Andy Field's chapter on repeated measures design for an excelent introduction to the computation
+
+## Assumptions in repeated measures
+
+  - Covariance of repeated measures should be approximately a multiple of compund symmetry matrix
+  
+  $\begin{vmatrix}
+  1    & \rho & \rho \\
+  \rho & 1    & \rho \\
+  \rho & \rho & 1
+  \end{vmatrix}$
+  
+  - eg.
+  
+  $\begin{vmatrix}
+  2.1  & 1.2  & 1.2 \\
+  1.2  & 2.1  & 1.2 \\
+  1.2  & 1.2  & 2.1
+  \end{vmatrix}$
+  
+## Assumptions in repeated measures
+
+  - Assumption of compound symmetry is sufficient, but not necessary
+  - Usually it is good if repeated measures show sphericity, i.e. variances of all of the differences between measurements are rougly equal
+  
+## Assumptions in repeated measures
+  
+```{r}
+x <- MASS::mvrnorm(100, c(1,2,3), matrix(c(2.1,1.2,1.2, 1.2,2.1,1.2,1.2,1.2,2.1), ncol=3))
+x2minus1 <- x[,2]-x[,1]
+x3minus1 <- x[,3]-x[,1]
+x3minus2 <- x[,3]-x[,2]
+boxplot(cbind(x2minus1, x3minus1, x3minus2), col='lightblue')
+```
+
+  - Note that with only 2 repeated measures, there is only one difference, hence the assumption of sphericity is not necessary
+  
+## Mauchly's (1940) test for sphericity
+
+ - To check for sphericity one should perform Mauchly's test
+ 
+ $W = \frac{\prod\lambda_\mathcal{l}}{[\frac{1}{A-1}\sum\lambda_\mathcal{l}]^{A-1}}$
+ 
+ - Where $\lambda_\mathcal{l}$ are eigenvalues of covariance matrix - don't worry if you don't know matrix algebra, you will usually be interested only in the final value
+ - This statistic varies between 0 and 1, and reaches 1 when the matrix is spherical
+ - Value close to 0 (statistically significant) means that assumption of sphericity does not hold
+ 
+## Repeated measures with non-spherical covariance matrix
+
+  - If the sphericity assumption is not valid, then the F test becomes to liberal (i.e. the proportion of rejections of the null hypothesis is larger the $\alpha$ level when the null hypothesis is true)
+ - In order to minimize this problem a number of correction of degrees of freedom have been proposed, see paper of Herve Abdi in lab_texts folder if you are interested in technical details
+ 
+## Repeated measures with non-spherical covariance matrix
+
+ - The 2 most frequently used corrections are: Greenhouse-Geisser, $\hat{\epsilon}$ and Huynh-Feldt, $\tilde{\epsilon}$
+ - Both of these corrections vary from lower bound (with extreme sphericity) to 1 (no sphericity), with lower bound:
+ $\frac{1}{k - 1}$
+ where k - number of repeated measurements
+ - Lower bound correction is the most extreme option
+ - Less extreme is GG, however when GG estimate is more than 0.75, the correction can be too conservative
+ - In such instance one should use HF correction
+ 
+## Other ways to deal with non-sphericity
+
+  - Use multivariate tests, which do not make the assumption of sphericity
+  - Use hierarchical linear models - the best and the most flexible option, but quite hard to learn (I will try to cover some of the basics during labs on regression analysis)
+
+  

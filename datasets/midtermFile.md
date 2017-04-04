@@ -30,6 +30,6 @@ This dataset can be analyzed in several ways.
   * try different types of contrasts (look for description in SPSS documentation and Andy Field's book)
 5. Perform mixed design ANOVA and check effects of time across participants in different conditions
   * for easiness of interpretation you can use one of auxiliary variables (aux1 or aux2) instead of those used in factorial ANOVA
-  * check changes of well-being with time for those that received some treatment vs. those in control group
   * check assumption of homogeneity of inter-correlations
+  * check changes of well-being with time for those that received some treatment vs. those in control group
   * check whether a difference between wellbeing post-treatment and in follow up study vs. in pre-test is significantly higher for those that received some form of the therapy (vs. those who do not receive any treatment)

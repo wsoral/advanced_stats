@@ -17,7 +17,7 @@ This dataset can be analyzed in several ways.
   * check whether there is an interaction between both forms of treatment
 2. Repeat the analysis but this time accounting for the time elapsed from the accident
   * check whether assumptions for performing ANCOVA are not violated
-  * check main effect of both psychotherapy and pharmacotherapy - which form of therapy seems to be more efficient (use values of effect size to compare them)
+  * check main effects of both psychotherapy and pharmacotherapy - which form of therapy seems to be more efficient (use values of effect size to compare them)
   * check whether there is an interaction between both forms of treatment; if yes analyse simple main effects of both types of therapy, interpret them
 3. Check whether results of both forms of therapy are the same for males and females, account for time from the accident
   * perform 3 way ANOVA, and interpret main effects and 2 way interactions
@@ -26,7 +26,7 @@ This dataset can be analyzed in several ways.
 4. Perform repeated measures analysis with well-being measured three times: pretest, posttest, and followup
   * check assumption of sphericity and apply any correction if necessary
   * check for the effect of time on well-being
-  * interpret the effects of contrasts: what does linear trend mean, and what does quadratic trend mean
+  * interpret the effects of contrasts: what does linear trend means, and what does quadratic trend means
   * try different types of contrasts (look for description in SPSS documentation and Andy Field's book)
 5. Perform mixed design ANOVA and check effects of time across participants in different conditions
   * for easiness of interpretation you can use one of auxiliary variables (aux1 or aux2) instead of those used in factorial ANOVA

@@ -1,0 +1,48 @@
+---
+title: "Lab 7"
+author: "Wiktor Soral"
+date: "April 4th 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Putting it all together
+
+ - If we assign different participants to different condtions, and aim to compare means between conditions we are performing between-subjects design ANOVA
+ - If we repeatedly assign the same participants to different conditions, and aim to compare means between condition we are performing within-subjects design ANOVA
+ - We can also assign different participants to different conditions, and then within each 'between' condition repeatedly assign the same partipants to different conditions - this is called mixed-design ANOVA
+ 
+##  Mixed design ANOVA
+
+ - E.g. experiment where participants were randomly assigned to one of 3 conditions (control vs. placebo vs. treatment), and where DV was measured 3 times (pretest vs. posttest vs. follow up - 3 weeks later)
+ - We are performing mixed ANOVA in 3 (treatment) x 3 (time) design with the latter factor within subjects
+ 
+## (Some) Assumptions in mixed design
+
+  - Homogeneity of variances across levels of between factor - tested with Levene's test
+  - Sphericity of the repeated measurements = variances across each level of within factor are the same, correlations between pairs of levels are the same - tested with Mauchly's test
+  - Homogeneity of inter-correlations = variance-covariance matrices across levels of between factor - tested with Box's M test
+  
+## Preparing for mid-term exam 1
+
+ - Review chapters on ANOVA (GLM 1), ANCOVA (GLM 2), factorial ANOVA (GLM 3), repeated-measures design (GLM 4), and mixed design ANOVA (GLM 5) from Andy Field's book
+ - Make sure you know how to interpret and report statistics in ANOVA tables, e.g. know how F value, Mean Square, or $\eta_p^2$ is calculated
+ - Make sure you know what: main effect, 2 way interaction, 3 way interation, simple main effect, and covariate effect mean
+ - Make sure you how to check assumptions of homogeneity of variance, sphericity, and homogeneity of intercorrelations
+ 
+## Preparing for mid-term exam 2
+
+ - Make sure you know how to perform posthocs both in oneway and factorial ANOVA. 
+ - Make sure you know how to perform planned comparison analysis in oneway ANOVA - how to build contrasts, how to check whether to contrasts are orthogonal, how to build polynomial contrasts
+ - Make sure you know how to decompose (2 way and 3 way) interactions to obtain simple main effects with /EMMEANS command
+ - Make sure you know how to decompose 3-way interaction to obtain simple interaction terms (with /LMATRIX command)
+ - Make sure you know how to decompose 2-way interaction in mixed design ANOVA (with /LMATRIX and /MMATRIX commands)
+ 
+
+ 
+
+
+

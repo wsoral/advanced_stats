@@ -15,7 +15,7 @@ This dataset can be analyzed in several ways.
   * check assumption of homogeneity of variance
   * check main effect of both psychotherapy and pharmacotherapy - which form of therapy seems to be more efficient (use values of effect size to compare them)
   * check whether there is an interaction between both forms of treatment
-2. Repeated the analysis but this time accounting for the time elapsed from the accident
+2. Repeat the analysis but this time accounting for the time elapsed from the accident
   * check whether assumptions for performing ANCOVA are not violated
   * check main effect of both psychotherapy and pharmacotherapy - which form of therapy seems to be more efficient (use values of effect size to compare them)
   * check whether there is an interaction between both forms of treatment; if yes analyse simple main effects of both types of therapy, interpret them

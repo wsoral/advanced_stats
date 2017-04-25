@@ -24,3 +24,4 @@ Their average grade during last year of study was independently recorded.
  - Your structure should have: Aim of the analysis, Method, Results, and short Discussion
  - Include either simple plot or regression table, but remeber about proper formatting.
 
+If you need more information about how to do and interpret multiple regression read Andy Field's chapter on Regression.

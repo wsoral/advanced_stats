@@ -2,7 +2,7 @@
 title: "Lab 8"
 author: "Wiktor Soral"
 date: "April 25th 2017"
-output: ioslides_presentation
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}

@@ -14,13 +14,13 @@ Their average grade during last year of study was independently recorded.
 
 1. Open dataset - home4.sav.
 2. Perform multiple regression - with average grade as outcome variable, and intelligence and self-control as predictors.
-a. Adjust your model for additional covariates - gender and year of study.
-b. Check assumptions of the multiple regression. Note if there are any suspicious results.
-c. Check the overall model quality - goodness of fit.
-d. Check whether inteligence and self-control are significant predictors of average grade.
-e. Try to assess which of the two is more important predictor of average grade.
+ - Adjust your model for additional covariates - gender and year of study.
+ - Check assumptions of the multiple regression. Note if there are any suspicious results.
+ - Check the overall model quality - goodness of fit.
+ - Check whether inteligence and self-control are significant predictors of average grade.
+ - Try to assess which of the two is more important predictor of average grade.
 3. Write up your results.
-a. Remember about proper structure and formatting. Do not exceed 3 pages (Times New Romes, 12 points, double spacing)
-b. Your structure should have: Aim of the analysis, Method, Results, and short Discussion
-c. Include either simple plot or regression table, but remeber about proper formatting.
+ - Remember about proper structure and formatting. Do not exceed 3 pages (Times New Romes, 12 points, double spacing)
+ - Your structure should have: Aim of the analysis, Method, Results, and short Discussion
+ - Include either simple plot or regression table, but remeber about proper formatting.
 

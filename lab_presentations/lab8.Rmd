@@ -1,0 +1,159 @@
+---
+title: "Lab 8"
+author: "Wiktor Soral"
+date: "April 25th 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Linear regression
+
+```{r}
+x <- rnorm(50, 100, 15)
+y <- 0.001 + 0.04*x + rnorm(50, 0, 0.2)
+m_y = mean(y)
+plot(x, y, pch=16, xlab='', ylab='Average grade', xaxt='n')
+```
+
+- Suppose you observe a sample of average grades from students of some faculty
+
+## Linear regression
+
+ - Lets say that you would like to predict average grade, $y$, for other students of that faculty
+ - When making predictions we take into account associated error of prediction: $\sum_{i=1}^N | \hat{y_i} - \tilde{y_i} |$ where $\hat{y_i}$ is predicted value of y for each person, and $\tilde{y_i}$ is true value of y for each person
+ - Note that we never know $\tilde{y_i}$, but we would like to guess $\hat{y_i}$ reasonably close to the true value
+ - Which value for the $\hat{y_i}$ we should take?
+ 
+## Linear regression 
+
+ - Without any additional information, we know that the value $\hat{y_i}$ that will minimize our error in predicting $\tilde{y_i}$  is equal to expected value of $y$, $E(y)$, i.e. arithmetic mean of $y$ in a sample
+
+## Linear regression
+
+```{r}
+plot(x, y, pch=16, xlab='', ylab='Average grade', xaxt='n')
+abline(h=m_y, lwd=2, lty=2, col='red')
+```
+
+## Linear regression
+
+  - Note that if we set $\hat{y_i}$ to $E(y)$ we are still making some error:
+  - $\sum_{i=1}^N | y_i - \hat{y_i} |$
+
+## Linear regression
+
+```{r}
+plot(x, y, pch=16, xlab='', ylab='Agerage grade', xaxt='n')
+abline(h=m_y, lwd=2, lty=2, col='red')
+for(i in 1:50) {
+  lines(c(x[i], x[i]), c(m_y, y[i]))
+}
+```
+
+## Linear regression
+
+ - With some additional information surely we can do better, i.e. if we know IQ for each individual we could make better predictions of their average grades
+ - If we assume that average grade is proportional to the IQ of each individual we can write:
+ - $grade = a + b * IQ$ 
+ - $b$ is regression weight, i.e. how much average grade will increase/decrease if we change IQ by 1 unit
+ - $a$ is intercept, i.e. average grade for individuals with IQ equal to 0 (not very useful here)
+
+## Linear regression
+
+```{r}
+plot(x, y, pch=16, xlab='IQ', ylab='Average grade')
+y_true <- 0.001 + 0.04*x
+abline(a=0.001, b=0.04, lwd=2, lty=2, col='red')
+for(i in 1:50) {
+  lines(c(x[i], x[i]), c(y_true[i], y[i]))
+}
+```
+
+- Compare the lengths of vertical lines with plot where we use mean to predict y. Do you see any improvement?
+
+
+## Ordinary least squares (OLS)
+
+ - In OLS we want to set values for $b$ and $a$ that will minimize the sum of squares of residual values (i.e. length of vertical lines): 
+ - $\sum_{i=1}^N (y_i - \hat{y_i})^2$ where
+ - $\hat{y_i} = a + b * X$
+ 
+ - Exact derivation requires some knowledge of calculus and matrix algebra, but ultimately it results in nice analytical solution (i.e. simple formula for $a$ and $b$)
+
+## Assumptions in OLS
+
+  - Correct specification: we should use OLS only if we are sure of linear relation between predictor and outcome variables
+  - Residuals should have Normal distribution with mean equal to 0
+  - For every value of outcome variable residuals should have similar variance: homoscedasticity (recall homogeneity assumption in ANOVA)
+  - Residuals should be independently distributed
+
+## Multiple regression
+
+  - Lets say that we know that average grade results not only from IQ of each individual, but also from a level of motivation of each person.
+  - If we add another predictor to our equation we can hopefully improve our predictions
+  - $grade = a + b_1 * IQ + b_2 * motivation$
+  - In multiple regression we are trying to fit not a line, but rather a plane or hyperplane defined by our coefficients
+  - However the general rule of OLS is the same
+  
+## Multiple regression
+
+```{r}
+x_1 <- seq(0, 1, length=25)
+x_2 <- seq(0, 1, length=25)
+f <- function(x, y) { 0.001 + 0.4*x + 0.7*y}
+z <- outer(x_1, x_2, f)
+persp(x_1, x_2, z, theta=30, col='white', expand=0.5, xlab='IQ', ylab='Motivation', zlab='Average grade',shade=0.1)
+```
+
+
+## Multiple regression - no multicollinearity
+
+ - When we use multiple regression we usually assume that predictors are not redundant - there is no multicollinearity
+ - Suppose you would like to predict average grade and you would use results from 2 IQ tests as predictors
+ - Usually correlation between results of different IQ tests is quite high (we neglect concepts as multiple intelligences for simplicity)
+ - Therefore using additional test results as predictors would not increase our predictive power
+ - Worse yet, it would inflate uncertainty associated with each predictors, i.e. our algorithm would have problems with discriminating variances explained by each predictor
+ 
+## Model fit and $R^2$
+
+ - Suppose we have build our predictive model. Does it really make better predicitions than simple model with only mean of average grades? Maybe the better prediction is a result of pure coincidence?
+ - We can test this by checking the ratio of variance explained by model to variance that is unexplained - note the analogy to ANOVA
+ - In fact we are usually using F-test to test model fit
+ 
+## Model fit and $R^2$
+ 
+ - To check goodness of fit we can also look at the correlation of predicted and observed values of the outcome variable, $R$
+ 
+```{r}
+plot(y, predict(lm(y~x)), pch=16, xlab='Observed y', ylab='Predicted y')
+abline(0, 1, lwd=2, lty=2, col='red')
+```
+
+## Model fit and $R^2$
+
+ - Note that if we square correlation coefficient, $R$, we will obtain coefficient of determination, $R^2$, i.e. proportion of variance of $x_1$ explained by variable $x_2$
+ - The same logic applies to multiple regression, where $R^2$ denotes the variance of the outcome variable explained by model
+ - According to Cohen's suggestions when we want assess the effect size of the model fit
+ - $R^2=0.02$ indicates small effect size
+ - $R^2=0.13$ indicates medium effect size
+ - $R^2=0.26$ indicates large effect size
+
+## Hierarchical regression
+
+ - Often we will have a large number of predictors that and we will not want to include them into the model at the same time
+ - E.g. first we would like to check only for demographic variable (gender, year of study), then we would like to include cognitve skills (intelligence), and only at the end we would like to include motivational factors
+ - Such approach is called hierarchical regression
+ - It allows for testing whether adding additional theoretically relevant variable improves our predictive power
+ - E.g. whether after accounting for the level of intelligence, motivational factors still predict average grade - note the similarity of this approach to ANCOVA
+ 
+## Hierarchical regression
+ 
+ - In hierarchical regression we are assessing model fit not by comparing it to the null model (with only mean), but to model fit in previous step
+ - We are assessing $\Delta R^2$, i.e. change in goodness of fit
+
+
+
+

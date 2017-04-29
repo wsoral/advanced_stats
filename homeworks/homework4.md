@@ -1,6 +1,6 @@
 # Homework 4 - predicting average grade
 
-## Deadline - May 2nd, 2017
+## Deadline - May 8th, 2017
 
 According to some theories of personality (e.g. Mischel, Shoda, Rodriguez, 1989) self-control can play decisive role in individual's
 achievements (better performance at school, better job). Some researchers argue that self-control can be even more important than

@@ -1,8 +1,8 @@
 ---
-title: "Lab"
+title: "Lab 9"
 author: "Wiktor Soral"
-date: "7 05 2017"
-output: ioslides_presentation
+date: "May 8th 2017"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -57,12 +57,12 @@ $BMI = \beta_0 + \beta_1 * 1$
 
 $BMI = \beta_0 + \beta_1$
 
-$beta_0 = grand\ mean$
+$\beta_0 = grand\ mean$
 
 
 ## Regression with one binary predictor - weighted effect coding
 
-- $beta_0 = grand\ mean$ only if number of observations - $n$ - in category 1 is equal to $n$ in category 2
+- $\beta_0 = grand\ mean$ only if number of observations - $n$ - in category 1 is equal to $n$ in category 2
 - With unequal category sizes, e.g. $n_1 = 150$ and $n_1 = 100$ one can use weighted effect coding scheme
 - Category 1 is coded as $-n_2/n_1 = -100/150 = -0.6667$ and category 2 is coded as $1$
 - With this coding scheme, $\beta_0$ indicates overall sample mean, and $\beta_1$ indicates deviance of group mean from overall sample mean

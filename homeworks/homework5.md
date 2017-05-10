@@ -25,7 +25,7 @@ on collective self-esteem. I.e. let dimension be a focal predictor and let condi
 
 2. Check which moderation analysis results in significant interaction.
 
-3. Check simple slopes for significant moderation. Check importance of the dimension in two condtions.
+3. For analysis with significat interaction, check simple slopes, i.e. check the importance of the dimension in two condtions.
 
 4. Plot obtained results.
 

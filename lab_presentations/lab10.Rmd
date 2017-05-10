@@ -1,0 +1,147 @@
+---
+title: "Lab 10"
+author: "Wiktor Soral"
+date: "May 10th 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Regression without interactions
+
+$y = \beta_0 + \beta_1 * x + \beta_2 * z$, x=motivation, z=IQ
+
+```{r fig.height=5, fig.align='center'}
+x = seq(0, 10, length.out = 25)
+y = seq(0, 10, length.out = 25)
+z = expand.grid(x, y)
+z = z$Var1 + z$Var2
+z = matrix(z, ncol=25, byrow = T)
+persp(x=x,y=y,z=z, theta=65, phi=15, zlim=c(0,35),
+      xlab="IQ", ylab="Motivation",zlab="Average grade")
+```
+
+## Regression without interaction
+
+- Example: average grade is proportional to a sum of intelligence and motivation level
+
+- Importance of intelligence is the same for those with low and high level of motivation
+
+- Importance of motivation is the same for those with high and low IQ
+
+## Regression with interactions
+
+$y = \beta_0 + \beta_1 * x + \beta_2 * z + \beta_3 * xz$, x=motivation, z=IQ
+
+```{r fig.height=5, fig.align='center'}
+x = seq(0, 10, length.out = 25)
+y = seq(0, 10, length.out = 25)
+z = expand.grid(x, y)
+z = z$Var1 + z$Var2 + 0.15*z$Var1*z$Var2
+z = matrix(z, ncol=25, byrow = T)
+persp(x=x,y=y,z=z, theta=65, phi=15, zlim=c(0,35),
+      xlab="IQ", ylab="Motivation",zlab="Average grade")
+```
+
+## Regression with interactions
+
+- Example: average grade is proportional to a sum of intelligence and motivation level
+
+- But also, for highly intelligent students level of motivation is more important predictor of average grade than for students with low intelligence
+
+- E.g. those with high IQ may be better at selecting important informations from textbooks. Hence, although 2 students - 1 with low IQ and 1 with high IQ - may devote the same amount of time on reading (may have similar motivation), student with high IQ will prepare better for exams
+
+## Moderation analysis
+
+- Regression with interaction is commonly called moderation analysis, i.e. we want to check how importance of one of the predictors is influenced by the value of some other predictor
+
+```{r}
+x <- seq(1,10, length.out = 2)
+y <- seq(1,10, length.out = 2)
+plot(x,y,type='n',xlab='',ylab='',xaxt='n',yaxt='n',bty='n')
+symbols(c(2,5,8),c(2.5, 7.5, 2.5), 
+        rectangles = matrix(rep(c(3,2),3), ncol=2, byrow=T),lwd=2, add=T)
+text(c(2,5,8),c(2.5, 7.5, 2.5),
+     labels=c('Focal\npredictor','Moderator','Outcome\nvariable'))
+arrows(2.8,2.5,7.2,2.5, code=2, lwd=2, angle=15)
+arrows(5, 6.25, 5, 2.5, code=2, lwd=2, angle=15)
+```
+
+## Simple slopes
+
+- Keep in mind that bended plane is a proper representation of regression with interaction
+- However, understanding graphical representation of plane is rather hard (especially when it is projected on 2 dimensional sheet of paper)
+- Usually, we present relation of focal predictor (e.g. intelligence) with outcome variable for different values of moderator (e.g. motivation)
+- We call such regression lines as simple slopes
+- Think of simple slopes as slices cut from the plane at different values of moderators 
+
+## Simple slopes
+
+```{r fig.height=5, fig.width=6, fig.align='center'}
+x = seq(0,10, length.out = 2)
+y = seq(0,10, length.out = 2)
+plot(x,y, type='n', xlab="Motivation level", ylab="Average grade", xaxt="n", yaxt="n")
+lines(x, 0.4*x, lwd=2, lty=2)
+lines(x, 0.9*x, lwd=2, lty=3)
+legend("topleft", legend=c("low IQ", "high IQ"), lwd=c(2,2), lty=c(2,3))
+```
+
+## Computing simple slopes
+
+$y = \beta_0 + \beta_1 * x + \beta_2 * z + \beta_3 * xz$, rearrange
+
+$y = (\beta_0 + \beta_2 * z) + (\beta_1 * x  + \beta_3 * xz)$, pull x from 2nd bracket
+
+$y = (\beta_0 + \beta_2 * z) + (\beta_1  + \beta_3 * z)x$
+
+$(\beta_0 + \beta_2 * z)$ - intercept of simple slope
+
+$(\beta_1  + \beta_3 * z)x$ - slope of simple slope
+
+- Note both I and S of y regressed on x (focal predictor), depend on the values of z (moderator)
+
+## Computing simple slopes - additional remarks
+
+- Usually in moderation analysis continuous predictors are centered prior to analysis
+- I.e. sample mean of a predictor is substracted from a each individual's result 
+- This is only to help with interpretation of regression output
+- Do not center your predictors if value of $0$ on a scale of some predictor has some special meaning
+
+## Computing simple slopes - additional remarks
+
+- Usually values of $M - 1 SD$, $M$, and $M + 1SD$ (or only $M - 1 SD$ and $M + 1SD$) of moderator are selected as points to draw simple slopes
+
+- Sometimes 25th, 50th, and 75th percentile is used
+
+## Computing simple slopes - additional remarks
+
+- Categorical variables can be used both as focal predictors and as moderators
+- However, some coding scheme have to be used (e.g. dummy coding)
+
+## Additional literature
+
+- Complete introduction to moderation analysis is beyond the scope of this course
+- If you want to know more about this, Cohen, Cohen,  West, & Aiken (blue book) is a classical reference
+
+## Computing regression with interactions in SPSS
+
+- Standard SPSS does not include procedures to compute moderation analysis
+- This is why computing interaction with standard SPSS requires a lot of additional work and transformations
+- Luckily, there exist a macro created by Andrew F. Hayes, that make some things a lot easier - the macro is called PROCESS
+
+## PROCESS
+
+- PROCESS is quite powerful tool, it helps with:
+1. moderation analysis
+2. mediation analysis
+3. moderated mediation analysis
+4. mediated moderation analysis
+5. a lot more
+- we will focus on the most basic one - Model 1 for 2-way interaction analysis
+
+
+
+
+

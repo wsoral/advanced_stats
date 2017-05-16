@@ -1,0 +1,142 @@
+---
+title: "Lab 11"
+author: "Wiktor Soral"
+date: "May 16th 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Moderator
+
+- A moderator is a qualitative (e.g. gender, race) or quantitative (e.g. IQ) variable that affects the direction and/or strength of the relation between an independent or predictor variable and a dependent or outcome variable.
+- E.g. according to contact hypothesis contact with outgroup member reduces prejudice. However, some suggest that there need to exist some optimal condition, that facilitiate (or even makes possible) contact's reduction of intergroup prejudice. One of the optimal conditions is similar status of both groups. 
+- In the example contact is the main predictor, prejudice is the outcome variable, and status (dis)similarity is the moderator
+
+## Moderation analysis
+
+```{r}
+x <- seq(1,10, length.out = 2)
+y <- seq(1,10, length.out = 2)
+plot(x,y,type='n',xlab='',ylab='',xaxt='n',yaxt='n',bty='n')
+symbols(c(2,5,8),c(2.5, 7.5, 2.5), 
+        rectangles = matrix(rep(c(3,2),3), ncol=2, byrow=T),lwd=2, add=T)
+text(c(2,5,8),c(2.5, 7.5, 2.5),
+     labels=c('Focal\npredictor','Moderator','Outcome\nvariable'))
+arrows(2.8,2.5,7.2,2.5, code=2, lwd=2, angle=15)
+arrows(5, 6.25, 5, 2.5, code=2, lwd=2, angle=15)
+```
+
+
+## Mediator
+
+- A given variable may be said to function as a mediator to the extent that it accounts for the relation between predictor and the outcome variable
+- Whereas moderator variables specify when certain effects will hold, mediators speak how or why such effects occur.
+- E.g. according to contact hypothesis contact with outgroup member reduces prejudice. A matter of dispute is how contact works. Some suggest that contact with outgroup members decreases the level of intergroup anxiety.
+- In the example contact is the main predictor, prejudice is the outcome variable, and level of integroup anxiety is the mediator.
+
+## Mediation analysis
+
+```{r}
+x <- seq(1,10, length.out = 2)
+y <- seq(1,10, length.out = 2)
+plot(x,y,type='n',xlab='',ylab='',xaxt='n',yaxt='n',bty='n')
+symbols(c(2,5,8),c(2.5, 7.5, 2.5), 
+        rectangles = matrix(rep(c(3,2),3), ncol=2, byrow=T),lwd=2, add=T)
+text(c(2,5,8),c(2.5, 7.5, 2.5),
+     labels=c('Focal\npredictor','Mediator','Outcome\nvariable'))
+text(c(3.1, 6.9, 5, 5), c(6.5, 6.5, 2, 3.1),
+     labels=c('a','b','c',"c'"))
+arrows(2.8,2.5,7.2,2.5, code=2, lwd=2, angle=15)
+arrows(2,3.75,4.2,7.5, code=2,lwd=2,angle=15)
+arrows(5.8,7.5,8,3.75, code=2,lwd=2,angle=15)
+#arrows(5, 6.25, 5, 2.5, code=2, lwd=2, angle=15)
+```
+
+## Different effects in mediation
+
+- total effect = direct effect + indirect effect
+- $c = c' + a*b$
+- $c - c' = a*b$
+- total effect - direct effect = indirect effect
+- total effect = relationship of interest
+- indirect effect = postulated process responsible for total effect
+- direct effect = all other processes that are not focal to the researcher's interests
+
+## Testing mediation
+
+Baron and Kenny's (1986) approach:
+
+1. Show that the causal variable (X) is correlated with the outcome (Y) - $c$.
+2. Show that the causal variable (X) is correlated with the mediator (M) - $a$.
+3. Show that the mediator (M) affects the outcome variable (Y), controlling for the effect of the causal variable (X) - $b$.
+4. To establish that M completely mediates the X-Y relationship, the effect of X on Y controlling for M should be zero - $c'$.
+
+## Testing mediation
+
+Joint Significance Test (MacKinnon et al., 2002)
+
+- if both $a$ and $b$ are found to be significant, mediation is present
+
+## Testing mediation
+
+Sobel (1982) first order test:
+
+- used to test significance of the product $a*b$
+- standard error is calculated by delta method
+
+$\sigma_{ab} = \sqrt{a^2 \sigma_b^2 + b^2 \sigma_a^2}$
+
+- with this test, a strong assumption is made of multivariate normality of both coefficients
+
+## Testing mediation
+
+Bootstrapping techniques:
+
+- confidence intervals for the product of $a$ and $b$ are computed with a general approach called bootstrapping
+
+
+## What is bootstrapping?
+
+- Usually we assume that collected sample was drawn randomly from general population, and on the basis of such sample we want to make inferences about the population.
+- We have to assume that the sampling distribution is approximately normal to make valid inferences.
+- If this is not true, we will make biased inferences.
+
+- With bootstrapping we are not assuming anything, but we 'draw a sampling distribution from the sample'.
+- We repeatedly draw with replacement a sample of observations from the original sample, and for each draw we are computing the statistic of interest. We add each computed statistic to previous one, and then after e.g. 5000 iterations we are able to describe obtained distribution.
+
+## General considerations with mediation analysis
+
+- It is possible to manipulate X and to estimate causal effect of X on M and Y.
+- However, within the same study it impossible to manipulate also M. Thus, causal effect of M on Y is always uncertain.
+- Both M and Y can be influenced by some unmeasured confounder.
+- Because of this, single mediation analysis should be treated rather as a tool to reject mediation analysis, than a tool that would give evidence of mediation.
+- But, new techniques are developed and it is possible that in just a few years some breakthrough will occur.
+
+## General considerations with mediation analysis
+
+- Different ways of testing mediation are also a matter of dispute: 
+- Some argue that total effect (X on Y) has to be significant, if one wants to perform mediation analysis.
+- Others argue that the requirement of significant total effect is not necessary.
+
+## General considerations with mediation analysis
+
+- Although, the first position seems logical, i.e. some significant relationship has to exist if we want explain the process behind, the second seems also valid.
+- With more complex models, the predictor can instigate different processes that exert both positive and negative effect on the outcome variable. These different processes cancel out resulting in nonsignificant total effect.
+- Such situation can be tested with multiple mediators tested in parallel.
+
+## PROCESS
+
+- PROCESS makes testing mediation extremely use. However, we should be extremely careful and always consider whether mediation hypothesis is theoretically plausible
+- In fact policies of some psychological journals are openly against articles with mediation analysis.
+
+
+
+
+
+
+
+

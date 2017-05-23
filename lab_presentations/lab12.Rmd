@@ -1,0 +1,141 @@
+---
+title: "Lab 12"
+author: "Wiktor Soral"
+date: "May 23rd 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Problem of too many dimensions
+
+- Suppose you would like to compare cognitive capabilities among a group of 4 individuals. You have administered 4 different tests. Below are the results. Who has the highest cognitive capabilities?
+
+|    | t1 | t2 | t3 | t4 |
+|----|----|----|----|----|
+| I1 | 5  | 4  | 6  | 5  |
+| I2 | 7  | 8  | 2  | 3  |
+| I3 | 1  | 2  | 8  | 9  |
+| I4 | 6  | 7  | 3  | 4  |
+
+## Problem of too many dimensions
+
+Similar problems are frequently encountered in empirical science.
+
+- You would like to assess a general level of prejudice having obtained prejudice towards 10 different minorities.
+- You would like to obtain a score from a long and complex personality questionnaire.
+- You would like to obtain scores measuring how other person's are perceived, having obtained evaluations on 30 different traits.
+
+Each item from the questionnaire or each trait forms a separate dimension. Can you imagine a 30-dimensional space?
+
+## Reducing dimensionality
+
+- To deal with the problem of multidimensionality we want to make a projection on a space with lower number of dimensions.
+- In other words we want to find a small number of dimensions, that would explain most of initial variation.
+- The ideal space would explain 100% of the initial variation with only 1 dimension.
+- Usually the aim is to find space that would explain at least 50% of variation, with a few dimensions (2-4)
+
+## Reducing dimensionality
+
+```{r fig.height=5.4, fig.align='center'}
+library(ggplot2)
+library(car)
+Davis <- Davis[-12, c('height', 'weight')]
+Davis$pc <- predict(prcomp(~height + weight, Davis))[,1]
+ei <- eigen(cov(Davis[,1:2]))
+mh <- mean(Davis$height)
+mw <- mean(Davis$weight)
+ei_ar <- rbind(
+c(mh, mw),
+c(mh, mw) + sqrt(ei$values[1])*ei$vectors[,1],
+c(mh, mw),
+c(mh, mw) - sqrt(ei$values[1])*ei$vectors[,1],
+c(mh, mw),
+c(mh, mw) + sqrt(ei$values[2])*ei$vectors[,2],
+c(mh, mw),
+c(mh, mw) - sqrt(ei$values[2])*ei$vectors[,2])
+ei_ar <- as.data.frame(ei_ar)
+ei_ar$gr_vec <- rep(1:4, each=2)
+names(ei_ar)[1:2] <- c('height', 'weight')
+ggplot(Davis, aes(height, weight))+
+  geom_point(aes(color=pc),shape=16, size=5, alpha=.4, show.legend = F)+
+  theme_minimal()+
+  labs(x='Height (cm)', y='Weight (kg)')+
+  scale_color_gradient(low = "#0091ff", high = "#f0650e")+
+  coord_fixed()
+```
+
+## Reducing dimensionality
+```{r fig.height=5.4, fig.align='center'}
+ggplot(Davis, aes(height, weight))+
+  geom_point(aes(color=pc),shape=16, size=5, alpha=.4, show.legend = F)+
+  geom_line(aes(group=gr_vec), col='#e04700',size=0.8, data=ei_ar[1:4,], arrow=arrow(angle=15, length=unit(0.15, "inches"),ends=c('last','first')))+
+  theme_minimal()+
+  labs(x='Height (cm)', y='Weight (kg)')+
+  scale_color_gradient(low = "#0091ff", high = "#f0650e")+
+  coord_fixed()
+```
+
+## Reducing dimensionality
+
+```{r fig.height=5.4, fig.align='center'}
+ggplot(Davis, aes(height, weight))+
+  geom_point(aes(color=pc),shape=16, size=5, alpha=.4, show.legend = F)+
+  geom_line(aes(group=gr_vec), col='#e04700',size=0.8, data=ei_ar[1:4,], arrow=arrow(angle=15, length=unit(0.15, "inches"),ends=c('last','first')))+
+  geom_line(aes(group=gr_vec), col='#007ff4',size=0.8, data=ei_ar[5:8,], arrow=arrow(angle=15, length=unit(0.15, "inches"),ends=c('first','last')))+
+  theme_minimal()+
+  labs(x='Height (cm)', y='Weight (kg)')+
+  scale_color_gradient(low = "#0091ff", high = "#f0650e")+
+  coord_fixed()
+```
+
+## Reducing dimensionality
+
+```{r}
+summary(princomp(~height + weight, Davis))
+princomp(~height + weight, Davis)$loadings
+```
+
+## Factor analysis
+
+```{r fig.height=5.4, fig.align='center'}
+x <- seq(1,10, length.out = 100)
+y <- seq(1,10, length.out = 100)
+plot(x,y,type='n',xlab='',ylab='',xaxt='n',yaxt='n',bty='n')
+symbols(c(2,5,5,8),c(2.5, 2.5, 7.5, 2.5), circles = rep(0.7,4),inches=F,lwd=2, add=T)
+text(c(2,5, 5,8),c(2.5, 2.5, 7.5, 2.5),
+     labels=c('S1','S2','G', 'S3'))
+arrows(5.,6.25,5., 3.8, code=2, lwd=2, angle=15)
+arrows(5.,6.25,2., 3.8, code=2, lwd=2, angle=15)
+arrows(5.,6.25,8., 3.8, code=2, lwd=2, angle=15)
+```
+
+
+## Factor analysis
+
+The factor analysis model is 
+$x = \Lambda f + \epsilon$
+
+- $x$ is $p$ element vector of observable responses, e.g. reponses of an individual to questionnaire with $p$ items
+- $f$ is $k$ element vector of unobservable (latent) scores of an individual, e.g. Spearman's G factor
+- $\Lambda$ is $p \times k$ matrix of loadings, i.e. how much latent factor affects responsnes to each item of measurement
+- $\epsilon$ is a $p$ element vector of errors, i.e. amount of variation of observable responses not explained by latent factor
+
+
+## Factor scores
+
+```{r fig.height=5.4, fig.align='center'}
+suppressMessages(library(psych))
+corPlot(cattell[1:8,1:8], numbers=T, upper = F, diag = F, main='8 cognitive variables from Cattell (1963)')
+```
+
+## Factor analysis - requirements
+
+- Large sample size - a common rule is to have at least 10-15 participants per variable
+- Patterns in the correlation matrix should not be diffuesed - check Kaiser-Meyer-Olkin measure of sampling adequacy (KMO) - if greater than 0.7 it is good; should not be below 0.5
+- Variables should correlate with each other - check whether correlation matrix differs from identity matrix with Bartlett test (p should be significant)
+- Correlation matrix should not be singular - i.e. no multicollinearity - check determinant of R-matrix - should be greater than 0.00001
+- Multivariate normality
+

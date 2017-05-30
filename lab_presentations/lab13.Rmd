@@ -1,0 +1,106 @@
+---
+title: "Lab 13"
+author: "Wiktor Soral"
+date: "May 30th 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Factor rotation
+
+- After extraction of factor the obtained loadings will be high for the 1st factor and low for any other factor.
+- To make interpretation easier loading matrix is rotated. Think of rotation as of change of perspective in the multidimensional space.
+- You will usually use orthogonal rotation - which assumes that the correlation between factors is equal to 0 - or oblique rotation which assumes some amount of correlation between factors.
+- Whether to use orthogonal or oblique rotation depends on theoretical reasons. Selecting the proper one may make the interpretation of factors easier.
+
+## Orthogonal factor rotation
+
+```{r fig.align='center'}
+x = c(-1,1,0,0)
+y = c(0,0,-1,1)
+fl <- cbind(x,y)
+rm <- matrix(c(cos(pi/6), sin(pi/6), -sin(pi/6), cos(pi/6)), ncol=2)
+rotated <- fl%*%rm
+
+plot(x[1:2],y[1:2], bty="n", type='l', lwd=2, lty=2, xlab='Factor 1', ylab='Factor 2', asp=1)
+lines(x[3:4], y[3:4], lwd=2, lty=2)
+lines(rotated[1:2,1], rotated[1:2,2], lwd=2, lty=2, col='red')
+lines(rotated[3:4,1], rotated[3:4,2], lwd=2, lty=2, col='red')
+text(0.07,0.3, labels = expression(theta))
+```
+
+
+## Oblique factor rotation
+
+```{r fig.align='center'}
+x = c(-1,1,0,0)
+y = c(0,0,-1,1)
+fl <- cbind(x,y)
+rm <- matrix(c(cos(pi/6), sin(pi/6), -sin(pi/6), cos(pi/6)), ncol=2)
+orm <- matrix(c(cos(-pi/6), sin(-pi/6), -sin(-pi/6), cos(-pi/6)), ncol=2)
+
+orotated <- rbind(fl[1:2,]%*%orm, fl[3:4,]%*%rm)
+
+plot(x[1:2],y[1:2], bty="n", type='l', lwd=2, lty=2, xlab='Factor 1', ylab='Factor 2', asp=1)
+lines(x[3:4], y[3:4], lwd=2, lty=2)
+lines(orotated[1:2,1], orotated[1:2,2], lwd=2, lty=2, col='red')
+lines(orotated[3:4,1], orotated[3:4,2], lwd=2, lty=2, col='red')
+text(0.07,0.3, labels = expression(theta))
+text(0.3,0.07, labels = expression(theta))
+```
+
+## Factor scores
+
+- A very useful option after doing EFA, is a possibility to save factor scores to your datasets (assuming you have obtained satisfactory solution).
+- These can be used as an alternative to composite scores (sum or mean) computed by hand.
+- Usually FS have mean of 0, and standard deviation of 1. Depending on the method the can be correlated or not.
+- Comparison of different method goes beyond the scope of this course. 
+
+## Reliability analysis
+
+- When taking any measurement we strive to obtain a score reasonably close to the true value.
+- However obtained score always involve some amount of error. We can write the obtained as score as:
+
+$X_t = X_\infty + X_e$,
+
+where $X_t$ = obtained score, $X_\infty$ = true score, and $X_e$ = error
+
+- Also:
+
+$var_t = var_\infty + var_e$
+
+## Reliability analysis
+
+- Reliability is a proportion of the true variance to the observed variance, i.e. what part of obtained score is actually a signal and not noise:
+
+$r_{tt} = var_\infty / var_t$
+
+- After some more tranformations, we can find easy to calculate formula:
+
+$r_{tt} = 1 - var_e / var_t$
+
+- Note this is similar to the formula for $R^2$, in fact we can use correlation coefficient to calculate reliability score.
+
+## Reliability analysis
+
+- Reliable measure will give similar results for each measurement.
+- In other words, correlation between scores frome each measurement will be high.
+- One way to estimate reliability of a measure is to take a measurement twice and to calculate the correlation between the 2 sets of scores.
+- This is not the most convenient, and involves some methodological issues, e.g. learning.
+- An alternative is to use *split-half reliability*, i.e. randomly splitting the scale and calculating correlation between the halves.
+- However, there are many ways you can split the scale and each will probably give you slightly different result.
+
+## Reliability analysis
+
+- To deal with the above problem with *split-half reliability*, Cronbach came up with a measure that is equivalent to splitting the scale in two in every possible way and computing the correlation coefficient for each possible split.
+
+$\alpha = \frac{N^2 \overline{Cov}}{\sum s^2_{item} + \sum Cov_{item}}$
+
+## Reliability analysis
+
+- Usually value of Cronbach's $\alpha$ higher than .7 indicates reliable scale. With diagnostic or clinical tests you would rather need reliability higher than .9
+- However, Cronbach's $\alpha$ depends on the number of items in scale. It increases with every item. Therefore you can obtain high $\alpha$ not because the scale is reliable, but because you have a lot of items in the scale.
+- When computing $\alpha$ make sure that reverse coded items are recoded. Failure to do that result in very small or negative reliability coefficients.

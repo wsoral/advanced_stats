@@ -227,4 +227,30 @@ Meaninglessness was positive and significant predictor of social distance toward
 
 ### Task 9
 
-*Coming soon...*
+Six separate analyses were performed to check the hypothesis that national identification will moderate effects of powerlessness and meaninglessness on different discriminatory attitudes towards Jews. Factor scores were used as indicators of powerlessness and meaninglessness, as well as different discriminatory attitudes. Due to symmetry of the regression coefficients reported values were reversed in places where it facilitated interpretation. All predictors were centered prior to computing interaction terms.
+
+- Meaninglessness x national identification on political discrimination of Jews
+
+Moderation analysis did not indicate significant interaction effect, b = 0.06, SE = 0.04, p = .183.
+
+- Meaninglessness x national identification on economic discrimination of Jews
+
+Moderation analysis did not indicate significant interaction effect, b = 0.04, SE = 0.04, p = .320.
+
+- Meaninglessness x national identification on social distance towards Jews
+
+Moderation analysis did not indicate significant interaction effect, b = 0.04, SE = 0.04, p = .373.
+
+- Powerlessness x national identification on political discrimination of Jews
+
+Moderation analysis did not indicate significant interaction effect, b = 0.02, SE = 0.05, p = .616.
+
+- Powerlessness x national identification on economic discrimination of Jews
+
+Moderation analysis did indicate significant interaction effect, b = 0.10, SE = 0.05, p = .031. Analysis of simple slopes indicated the effect of powerlessness on economic discrimination of Jews was higher among participants highly identified with Poles (+1 SD), b = 0.28, SE = 0.05, p < .001, than among participants with low identification with Poles (-1 SD), b = 0.13, SE = 0.05, p = .005.
+
+- Powerlessness x national identification on social distance towards Jews
+
+Moderation analysis did not indicate significant interaction effect, b = -0.01, SE = 0.05, p = .792.
+
+*COMMENT: I would like to apologize for the last task. I found one interaction in the dataset, and I naively thought it will be present also among other indicators of discriminatory attitudes. It turned out that this is an example of how not to do statistical analyses. With multiple testing sooner or later, one will find some small and barely significant result. Actually, after accounting for multiple testing this single interaction seems to be not significant.*

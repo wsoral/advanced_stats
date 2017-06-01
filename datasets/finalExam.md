@@ -95,7 +95,7 @@ Perform regression analysis with composite score of conspiracy scale regressed o
 Add collective narcissism and national identification to the model. Instead of doing a new analysis, in the Block section click `Next`. You should be in block 2 of 2, add the 2 new covariates. Run and interpret the analysis. E.g. what is the relation between collective narcissism and belief in conspiracy stereotypes.
 
 ### Task 7
-Finally, add powerlessness and meaninglessness.
+Finally, add powerlessness and meaninglessness in block 3.
 - Check assumptions for the obtained linear regression model.
 - Assess the goodness of fit of the model.
 - Check which of the 2 main variables: powerlessness or meaninglessness is significant predictor of conspiracy stereotypes. Assess importance of both predictors.
